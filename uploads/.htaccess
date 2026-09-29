@@ -1,0 +1,36 @@
+# Disable PHP engine in uploads directory (mod_php only — directive fails under FPM)
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Never treat uploads as scripts — works on Apache 2.4 and 2.2
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(php|phtml|php3|php4|php5|phps|pl|py|jsp|asp|aspx|cgi|shtml|sh)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "\.(php|phtml|php3|php4|php5|phps|pl|py|jsp|asp|aspx|cgi|shtml|sh)$">
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+# Remove any script handlers as defense-in-depth
+<FilesMatch "\.(php|phtml|phps)$">
+    RemoveHandler .php .phtml .phps
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Set proper MIME types
+AddType image/jpeg .jpg .jpeg
+AddType image/png .png
+AddType image/gif .gif
+AddType image/webp .webp
+AddType image/svg+xml .svg
+AddType application/pdf .pdf
+AddType application/msword .doc .docx
+AddType application/vnd.ms-excel .xls .xlsx
+AddType application/zip .zip
+AddType application/x-rar-compressed .rar

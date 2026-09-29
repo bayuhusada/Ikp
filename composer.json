@@ -1,0 +1,26 @@
+{
+	"description": "Sistem Pelaporan Insiden Keselamatan Pasien (IKP)",
+	"name": "faskes/ikp",
+	"type": "project",
+	"homepage": "https://codeigniter.com",
+	"license": "MIT",
+	"support": {
+		"forum": "http://forum.codeigniter.com/",
+		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
+		"issues": "https://github.com/bcit-ci/CodeIgniter/issues",
+		"source": "https://github.com/bcit-ci/CodeIgniter"
+	},
+	"require": {
+		"php": ">=7.2",
+		"ext-mysqli": "*",
+		"dompdf/dompdf": "^3.1",
+		"phpoffice/phpspreadsheet": "1.21"
+	},
+	"suggest": {
+		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist"
+	}
+}

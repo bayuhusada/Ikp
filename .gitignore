@@ -1,0 +1,50 @@
+.DS_Store
+
+# --- Kredensial: JANGAN pernah di-commit ---
+.env
+.env.local
+.env.*.local
+
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+# .htaccess WAJIB ikut di-commit (proteksi uploads/ dan application/)
+!application/*/.htaccess
+!uploads/.htaccess
+
+composer.lock
+tests/mocks/database/ci_test.sqlite
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# --- Database dump: bisa memuat data pasien ---
+*.sql
+!database/schema.sql
+!database/seed.sql
+!database/migrations/*.sql
+/db/
+
+# Gambar tanda tangan pengguna (identitas, jangan di-commit)
+/uploads/ttd/*
+!/uploads/ttd/.gitkeep
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/

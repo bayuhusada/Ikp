@@ -1,0 +1,31 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect trailing slashes
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)/$ $1 [L,R=301]
+
+    # Remove index.php from URLs
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+    # Ensure Authorization header is passed
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Blokir akses langsung ke berkas sensitif.
+    # application/ sudah dilindungi .htaccess-nya sendiri, tapi ini pengaman ganda.
+    RewriteRule ^(application|system|vendor|database)/ - [F,L]
+
+    # Berkas .env, .sql, .md, log, dan lock tidak boleh diambil langsung
+    RewriteRule \.(env|sql|md|log|ini|lock|gitignore)$ - [F,L]
+
+    # Folder uploads/ tidak boleh diakses langsung. Gambar tanda tangan
+    # hanya boleh lewat controller agar tidak bisa ditebak URL-nya.
+    RewriteRule ^uploads/ - [F,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 index.php
+</IfModule>

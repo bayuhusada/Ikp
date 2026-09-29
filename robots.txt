@@ -1,0 +1,11 @@
+﻿User-agent: *
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /pelaporan/
+Disallow: /investigasi/
+Disallow: /rekap/
+Disallow: /audit-log/
+Disallow: /master/
+Disallow: /uploads/
+Disallow: /database/
+Disallow: /application/
